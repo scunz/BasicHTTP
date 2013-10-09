@@ -1,0 +1,30 @@
+
+PROJECT( bHTTP )
+
+QT_PREPARE(Core Network -Gui)
+
+INCLUDE_DIRECTORIES(${HTTP_SERVER_SOURCE_DIR})
+
+SET(SRC_FILES
+    main.cpp
+)
+
+SET(HDR_FILES
+)
+
+
+QT_MOC(MOC_FILES ${HDR_FILES})
+
+ADD_QT_EXECUTABLE(
+    bHTTP
+
+    ${SRC_FILES}
+    ${HDR_FILES}
+    ${MOC_FILES}
+)
+
+TARGET_LINK_LIBRARIES(
+    bHTTP
+
+    HttpServer
+)
