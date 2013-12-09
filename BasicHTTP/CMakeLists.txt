@@ -26,5 +26,6 @@ ADD_QT_EXECUTABLE(
 TARGET_LINK_LIBRARIES(
     bHTTP
 
-    HttpServer
+    LINK_PRIVATE
+        HttpServer
 )
