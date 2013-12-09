@@ -79,7 +79,7 @@ MACRO( QT_UIC out )
     QT5_WRAP_UI( ${out} ${ARGN} )
 ENDMACRO()
 
-function(QT_RCC infiles outfiles )
+macro(QT_RCC infiles outfiles )
 
     set(options)
     set(oneValueArgs)
@@ -130,9 +130,8 @@ function(QT_RCC infiles outfiles )
         list(APPEND ${outfiles} ${outfile})
     endforeach()
 
-    set(${outfiles} ${${outfiles}} PARENT_SCOPE)
-
-endfunction()
+    set(${outfiles} ${${outfiles}})
+endmacro()
 
 MACRO( QT_PREPARE )
     SET( QT_USED_MODULES "" )
@@ -149,9 +148,11 @@ MACRO( QT_PREPARE )
 ENDMACRO()
 
 MACRO(ADVANCE_TO_QT_PROJECT _target)
-    QT5_USE_MODULES( ${_target} ${QT_USED_MODULES} )
+    QT5_USE_MODULES( ${_target} LINK_PRIVATE ${QT_USED_MODULES} )
+
     IF( QT_USED_MAIN )
-        TARGET_LINK_LIBRARIES( ${_target} Qt5::WinMain )
+        TARGET_LINK_LIBRARIES( ${_target} LINK_PRIVATE Qt5::WinMain )
     ENDIF()
+
     _ADD_NOCASTS()
 ENDMACRO()
