@@ -1,3 +1,3 @@
 [submodule "libHttpServer"]
 	path = libHttpServer
-	url = git@github.com:/scunz/libHttpServer.git
+	url = https://github.com/scunz/libHttpServer.git
